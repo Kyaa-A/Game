@@ -6,10 +6,10 @@ public class RockPaperScissors {
 
     static String playerChoice = " ";
     static String computerChoice = "";
-    static String winningSide = "";
     static int playerPoints = 0;
     static int computerPoints = 0;
     static boolean bool = true;
+    static boolean gameEnds = false;
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -21,20 +21,25 @@ public class RockPaperScissors {
 
         while (playIdentifier.equalsIgnoreCase("Y")) {
 
-            clear();
+            while (!gameEnds) {
 
-            System.out.println("Options to choose from:\n1. Rock\n2. Paper\n3. Scissors");
-            System.out.println("\nThe Computer already made it's choice\n");
+                clear();
 
-            playerTurn(scan);
+                System.out.println("Options to choose from:\n1. Rock\n2. Paper\n3. Scissors");
+                System.out.println("\nThe Computer already made it's choice\n");
 
-            computerTurn(rand);
+                playerTurn(scan);
 
-            System.out.println("\n" + scoringIdentifier(playerChoice, computerChoice));
+                computerTurn(rand);
 
-            winnerIdentifier();
+                System.out.println("\n" + scoringIdentifier(playerChoice, computerChoice));
 
-            Reloader();
+                winnerIdentifier();
+
+
+                Reloader();
+            }
+
         }
 
     }
@@ -83,30 +88,30 @@ public class RockPaperScissors {
         String finalMessage = "";
 
         if (playerChoice.equals("Rock") && computerChoice.equals("Scissors")) {
-            finalMessage = "---Player Scored---";
+            finalMessage = "-------------Player Scored-------------";
             playerPoints++;
         } else if (playerChoice.equals("Paper") && computerChoice.equals("Rock")) {
-            finalMessage = "---Player Scored---";
+            finalMessage = "-------------Player Scored-------------";
             playerPoints++;
         } else if (playerChoice.equals("Scissors") && computerChoice.equals("Paper")) {
-            finalMessage = "---Player Scored---";
+            finalMessage = "-------------Player Scored-------------";
             playerPoints++;
         }
 
         if (computerChoice.equals("Rock") && playerChoice.equals("Scissors")) {
-            finalMessage = "---Computer Scored---";
+            finalMessage = "------------Computer Scored------------";
             computerPoints++;
         } else if (computerChoice.equals("Paper") && playerChoice.equals("Rock")) {
-            finalMessage = "---Computer Scored---";
+            finalMessage = "------------Computer Scored------------";
             computerPoints++;
         } else if (computerChoice.equals("Scissors") && playerChoice.equals("Paper")) {
-            finalMessage = "---Computer Scored---";
+            finalMessage = "------------Computer Scored------------";
             computerPoints++;
         }
 
         for (int i = 0; i < 3; i++) {
             if (playerChoice.equals(computerChoice)) {
-                finalMessage = "---Draw!---";
+                finalMessage = "-----------------Draw!-----------------";
             }
         }
 
@@ -115,13 +120,14 @@ public class RockPaperScissors {
 
     // Winner Identifier
     public static void winnerIdentifier() {
+        System.out.println("| Player Score: " + playerPoints + " | Computer Score: " + computerPoints + " |");
         if (playerPoints == 5) {
-            winningSide = "---Player Wins!---";
+            System.out.println("Player Wins!");
+            gameEnds = true;
         } else if (computerPoints == 5) {
-            winningSide = "---Computer Wins!---";
-
+            System.out.println("Computer Wins!");
+            gameEnds = true;
         }
-        System.out.println(winningSide);
     }
 
     // ClearScreen
