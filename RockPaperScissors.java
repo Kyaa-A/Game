@@ -122,10 +122,10 @@ public class RockPaperScissors {
     public static void winnerIdentifier() {
         System.out.println("| Player Score: " + playerPoints + " | Computer Score: " + computerPoints + " |");
         if (playerPoints == 5) {
-            System.out.println("Player Wins!");
+            System.out.println("------------[ Player Wins! ]-----------");
             gameEnds = true;
         } else if (computerPoints == 5) {
-            System.out.println("Computer Wins!");
+            System.out.println("-----------[ Computer Wins! ]----------");
             gameEnds = true;
         }
     }
