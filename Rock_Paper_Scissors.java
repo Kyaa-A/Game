@@ -36,7 +36,6 @@ public class Rock_Paper_Scissors {
 
                 winnerIdentifier();
 
-
                 Reloader();
             }
 
@@ -87,24 +86,16 @@ public class Rock_Paper_Scissors {
 
         String finalMessage = "";
 
-        if (playerChoice.equals("Rock") && computerChoice.equals("Scissors")) {
-            finalMessage = "-------------Player Scored-------------";
-            playerPoints++;
-        } else if (playerChoice.equals("Paper") && computerChoice.equals("Rock")) {
-            finalMessage = "-------------Player Scored-------------";
-            playerPoints++;
-        } else if (playerChoice.equals("Scissors") && computerChoice.equals("Paper")) {
+        if ((playerChoice.equals("Rock") && computerChoice.equals("Scissors")) ||
+            (playerChoice.equals("Paper") && computerChoice.equals("Rock")) ||
+            (playerChoice.equals("Scissors") && computerChoice.equals("Paper"))) {
             finalMessage = "-------------Player Scored-------------";
             playerPoints++;
         }
-
-        if (computerChoice.equals("Rock") && playerChoice.equals("Scissors")) {
-            finalMessage = "------------Computer Scored------------";
-            computerPoints++;
-        } else if (computerChoice.equals("Paper") && playerChoice.equals("Rock")) {
-            finalMessage = "------------Computer Scored------------";
-            computerPoints++;
-        } else if (computerChoice.equals("Scissors") && playerChoice.equals("Paper")) {
+        
+        if ((computerChoice.equals("Rock") && playerChoice.equals("Scissors")) ||
+                (computerChoice.equals("Paper") && playerChoice.equals("Rock")) ||
+                (computerChoice.equals("Scissors") && playerChoice.equals("Paper"))) {
             finalMessage = "------------Computer Scored------------";
             computerPoints++;
         }
