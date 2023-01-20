@@ -21,7 +21,7 @@ public class Tic_Tac_Toe {
                 clear();
                 
                 printBoard(board);
-                
+
                 winnerIdentifier(board, gameEnds);
 
                 playerTurn(board, scan);
@@ -95,7 +95,8 @@ public class Tic_Tac_Toe {
 
         if (scoringIdentifier(board, 'X')) {
             System.out.println("\n-------------[ Player Wins! ]-----------");
-        } else if (scoringIdentifier(board, 'O')) {
+        } 
+        if (scoringIdentifier(board, 'O')) {
             System.out.println("\n------------[ Computer Wins! ]----------");
         }
         return gameEnds = true;
