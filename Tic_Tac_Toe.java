@@ -97,13 +97,22 @@ public class Tic_Tac_Toe {
 
         if (scoringIdentifier(board, 'X')) {
             System.out.println("\n-------------[ Player Wins! ]-----------");
-            gameEnds = true;
+            return gameEnds = true;
         }
         if (scoringIdentifier(board, 'O')) {
             System.out.println("\n------------[ Computer Wins! ]----------");
-            gameEnds = true;
+            return gameEnds = true;
         }
-        return gameEnds;
+
+        for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+				if (board[i][j] == ' ') {
+                    return gameEnds = false;
+                }
+			}
+		}
+        System.out.println("The game ended in a tie!");
+        return gameEnds = true;
     }
 
     // Move Identifier
