@@ -29,6 +29,8 @@ public class Tic_Tac_Toe {
                 computerTurn(board);
 
                 Reloader();
+
+                break;
             }
         }
 
@@ -95,11 +97,13 @@ public class Tic_Tac_Toe {
 
         if (scoringIdentifier(board, 'X')) {
             System.out.println("\n-------------[ Player Wins! ]-----------");
+            gameEnds = true;
         } 
         if (scoringIdentifier(board, 'O')) {
             System.out.println("\n------------[ Computer Wins! ]----------");
+            gameEnds = true;
         }
-        return gameEnds = true;
+        return gameEnds;
     }
 
     // Move Identifier
