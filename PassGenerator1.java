@@ -5,7 +5,7 @@ public class PassGenerator1 {
         
         Random rand = new Random();
         
-        String character = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz01234567890";
+        String character = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         int length = 8;
 
         char[] password = new char[length];
