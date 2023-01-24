@@ -5,11 +5,12 @@ public class PassGenerator2 {
 
         Random rand = new Random();
 
+        char upperChar[] = new char[1];
+        char lowerChar[] = new char[5];
+
         String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lowerCase = upperCase.toLowerCase();
 
-        char upperChar[] = new char[1];
-        char lowerChar[] = new char[5];
         try {
             System.out.print("Here is your password:\t");
             // 2 Numbers
@@ -27,7 +28,6 @@ public class PassGenerator2 {
                 lowerChar[i] = lowerCase.charAt(rand.nextInt(lowerCase.length()));
                 System.out.print(lowerChar[i]);
             }
-
         } catch (Exception e) {
             System.out.println("Invalid");
         }
