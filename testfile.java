@@ -1,21 +1,205 @@
+import java.util.Random;
+import java.util.Scanner;
+
 public class testfile {
+    static int pieceCount = 0;
+
     public static void main(String args[]) {
-        String str = "Welcome to string handling tutorial";
-        // This will return the first char of the string
-        char ch1 = str.charAt(0);
 
-        // This will return the 6th char of the string
-        char ch2 = str.charAt(5);
+        Scanner scan = new Scanner(System.in);
+        boolean gameEnds = false;
+        boolean others = true;
 
-        // This will return the 12th char of the string
-        char ch3 = str.charAt(11);
+        char[][] board = {
+                { ' ', ' ', ' ' },
+                { ' ', ' ', ' ' },
+                { ' ', ' ', ' ' } };
 
-        // This will return the 21st char of the string
-        char ch4 = str.charAt(20);
+        System.out.print("[?] Would you like to play? Y/N: ");
+        String playIdentifier = scan.nextLine();
 
-        System.out.println("Character at 0 index is: " + ch1);
-        System.out.println("Character at 5th index is: " + ch2);
-        System.out.println("Character at 11th index is: " + ch3);
-        System.out.println("Character at 20th index is: " + ch4);
+        while (playIdentifier.equalsIgnoreCase("Y")) {
+            while (!gameEnds) {
+
+                printBoard(board);
+
+                int playerTurn = 0;
+
+                while (others) {
+                    System.out.print("\n[?] Where would you like to play? (1-9): ");
+                    playerTurn = scan.nextInt();
+                    if (isValidMove(board, playerTurn)) {
+                        break;
+                    } else {
+                        System.out.println("[!] " + playerTurn + " is not a valid move, re-enter number.");
+                    }
+                }
+
+                char playerSymbol = 'X';
+                switch (playerTurn) {
+                    case 1:
+                        board[0][0] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 2:
+                        board[0][1] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 3:
+                        board[0][2] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 4:
+                        board[1][0] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 5:
+                        board[1][1] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 6:
+                        board[1][2] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 7:
+                        board[2][0] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 8:
+                        board[2][1] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    case 9:
+                        board[2][2] = playerSymbol;
+                        pieceCount++;
+                        break;
+                    default:
+                        System.out.println("Invalid!");
+
+                }
+                Random rand = new Random();
+                int computerTurn;
+                while (true) {
+                    computerTurn = rand.nextInt(9) + 1;
+                    if (isValidMove(board, computerTurn)) {
+                        break;
+                    }
+                }
+                System.out.println("Computer chose " + computerTurn);
+                char compSymbol = 'O';
+
+                switch (computerTurn) {
+                    case 1:
+                        board[0][0] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 2:
+                        board[0][1] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 3:
+                        board[0][2] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 4:
+                        board[1][0] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 5:
+                        board[1][1] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 6:
+                        board[1][2] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 7:
+                        board[2][0] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 8:
+                        board[2][1] = compSymbol;
+                        pieceCount++;
+                        break;
+                    case 9:
+                        board[2][2] = compSymbol;
+                        pieceCount++;
+                        break;
+                    default:
+                        System.out.println("Invalid!");
+                }
+
+                if ((board[0][0] == playerSymbol && board[0][1] == playerSymbol && board[0][2] == playerSymbol) ||
+                        (board[1][0] == playerSymbol && board[1][1] == playerSymbol && board[1][2] == playerSymbol) ||
+                        (board[2][0] == playerSymbol && board[2][1] == playerSymbol && board[2][2] == playerSymbol) ||
+
+                        (board[0][0] == playerSymbol && board[1][0] == playerSymbol && board[2][0] == playerSymbol) ||
+                        (board[0][1] == playerSymbol && board[1][1] == playerSymbol && board[2][1] == playerSymbol) ||
+                        (board[0][2] == playerSymbol && board[1][2] == playerSymbol && board[2][2] == playerSymbol) ||
+
+                        (board[0][0] == playerSymbol && board[1][1] == playerSymbol && board[2][2] == playerSymbol) ||
+                        (board[0][2] == playerSymbol && board[1][1] == playerSymbol && board[2][0] == playerSymbol)) {
+                    System.out.println("\n-------------[ Player Wins! ]-----------");
+                    gameEnds = true;
+
+                } else if ((board[0][0] == compSymbol && board[0][1] == compSymbol && board[0][2] == compSymbol) ||
+                        (board[1][0] == compSymbol && board[1][1] == playerSymbol && board[1][2] == playerSymbol) ||
+                        (board[2][0] == compSymbol && board[2][1] == playerSymbol && board[2][2] == compSymbol) ||
+
+                        (board[0][0] == compSymbol && board[1][0] == compSymbol && board[2][0] == compSymbol) ||
+                        (board[0][1] == compSymbol && board[1][1] == compSymbol && board[2][1] == compSymbol) ||
+                        (board[0][2] == compSymbol && board[1][2] == compSymbol && board[2][2] == compSymbol) ||
+
+                        (board[0][0] == compSymbol && board[1][1] == compSymbol && board[2][2] == compSymbol) ||
+                        (board[0][2] == compSymbol && board[1][1] == compSymbol && board[2][0] == compSymbol)) {
+                    System.out.println("\n------------[ Computer Wins! ]----------");
+                    gameEnds = true;
+                }
+
+                for (int i = 0; i < board.length; i++) {
+                    for (int j = 0; j < board[i].length; j++) {
+                        if (pieceCount == 8) {
+                            System.out.println("The game ended in a tie!");
+                            gameEnds = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private static void printBoard(char[][] board) {
+        System.out.println("\n\t\t" + board[0][0] + " | " + board[0][1] + " | " + board[0][2]);
+        System.out.println("\t\t- + - + -");
+        System.out.println("\t\t" + board[1][0] + " | " + board[1][1] + " | " + board[1][2]);
+        System.out.println("\t\t- + - + -");
+        System.out.println("\t\t" + board[2][0] + " | " + board[2][1] + " | " + board[2][2]);
+    }
+
+    // Valid Move Identifier
+    private static boolean isValidMove(char[][] board, int position) {
+
+        switch (position) {
+            case 1:
+                return (board[0][0] == ' ');
+            case 2:
+                return (board[0][1] == ' ');
+            case 3:
+                return (board[0][2] == ' ');
+            case 4:
+                return (board[1][0] == ' ');
+            case 5:
+                return (board[1][1] == ' ');
+            case 6:
+                return (board[1][2] == ' ');
+            case 7:
+                return (board[2][0] == ' ');
+            case 8:
+                return (board[2][1] == ' ');
+            case 9:
+                return (board[2][2] == ' ');
+            default:
+                return false;
+        }
     }
 }
