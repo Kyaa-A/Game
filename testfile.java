@@ -139,6 +139,7 @@ public class testfile {
 
                         (board[0][0] == playerSymbol && board[1][1] == playerSymbol && board[2][2] == playerSymbol) ||
                         (board[0][2] == playerSymbol && board[1][1] == playerSymbol && board[2][0] == playerSymbol)) {
+                    printBoard(board);
                     System.out.println("\n-------------[ Player Wins! ]-----------");
                     gameEnds = true;
 
@@ -152,6 +153,7 @@ public class testfile {
 
                         (board[0][0] == compSymbol && board[1][1] == compSymbol && board[2][2] == compSymbol) ||
                         (board[0][2] == compSymbol && board[1][1] == compSymbol && board[2][0] == compSymbol)) {
+                    printBoard(board);
                     System.out.println("\n------------[ Computer Wins! ]----------");
                     gameEnds = true;
                 }
@@ -159,7 +161,8 @@ public class testfile {
                 for (int i = 0; i < board.length; i++) {
                     for (int j = 0; j < board[i].length; j++) {
                         if (pieceCount == 8) {
-                            System.out.println("The game ended in a tie!");
+                            printBoard(board);
+                            System.out.println("\n------------[ Draw! ]-----------");
                             gameEnds = true;
                         }
                     }
