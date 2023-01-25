@@ -7,8 +7,9 @@ public class PassGenerator1 {
         char[] password = new char[8];
         String character = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
+        System.out.println("=-=-=-=-=-=-=-[ Password ]-=-=-=-=-=-=-=");
         try {
-            System.out.print("Here is your password:\t");
+            System.out.print("[x] Here is your password :\t");
             for (int i = 0; i < password.length; i++) {
                 password[i] = character.charAt(rand.nextInt(character.length()));
             }

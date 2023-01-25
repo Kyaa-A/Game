@@ -11,14 +11,15 @@ public class PassGenerator2 {
         String upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lowerCase = upperCase.toLowerCase();
 
+        System.out.println("=-=-=-=-=-=-=-[ Password ]-=-=-=-=-=-=-=");
         try {
-            System.out.print("Here is your password:\t");
+            System.out.print("[x] Here is your password:\t");
             // 2 Numbers
             for (int i = 0; i < 2; i++) {
                 int randomizer = rand.nextInt(9);
                 System.out.print(randomizer);
             }
-            // 1 Uppercase Letter
+            // 1 Uppercase Letters
             for (int i = 0; i < 1; i++) {
                 upperChar[i] = upperCase.charAt(rand.nextInt(upperCase.length()));
                 System.out.print(upperChar[i]);
