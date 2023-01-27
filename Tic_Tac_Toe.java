@@ -1,18 +1,25 @@
-import java.util.Scanner;
 import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Tic_Tac_Toe {
-    public static void main(String[] args) throws InterruptedException {
+
+    static int pieceCount, playerTurn, computerTurn = 0;
+    static char playerSymbol = 'X', compSymbol = 'O';
+    static String winner = "Draw";
+    static boolean gameEnds = false, fixedTrue = true;
+
+    public static void main(String args[]) throws InterruptedException {
+
+        Scanner scan = new Scanner(System.in);
+        Random rand = new Random();
 
         char[][] board = {
                 { ' ', ' ', ' ' },
                 { ' ', ' ', ' ' },
                 { ' ', ' ', ' ' } };
-        Scanner scan = new Scanner(System.in);
-        boolean gameEnds = false;
 
-        System.out.print("Would you like to play? Y/N: ");
+        System.out.print("[?] Would you like to play? Y/N: ");
         String playIdentifier = scan.nextLine();
 
         while (playIdentifier.equalsIgnoreCase("Y")) {
@@ -22,21 +29,167 @@ public class Tic_Tac_Toe {
 
                 printBoard(board);
 
-                winnerIdentifier(board, gameEnds);
+                playerTurn(scan, fixedTrue, board);
 
-                playerTurn(board, scan);
+                playerMove(board);
 
-                computerTurn(board);
+                computerTurn(rand, board);
+
+                computerMove(board);
+
+                gameMaster(board);
 
                 Reloader();
+            }
+        }
+    }
 
+    private static void gameMaster(char[][] board) {
+        if ((board[0][0] == playerSymbol && board[0][1] == playerSymbol && board[0][2] == playerSymbol) ||
+                (board[1][0] == playerSymbol && board[1][1] == playerSymbol && board[1][2] == playerSymbol) ||
+                (board[2][0] == playerSymbol && board[2][1] == playerSymbol && board[2][2] == playerSymbol) ||
+
+                (board[0][0] == playerSymbol && board[1][0] == playerSymbol && board[2][0] == playerSymbol) ||
+                (board[0][1] == playerSymbol && board[1][1] == playerSymbol && board[2][1] == playerSymbol) ||
+                (board[0][2] == playerSymbol && board[1][2] == playerSymbol && board[2][2] == playerSymbol) ||
+
+                (board[0][0] == playerSymbol && board[1][1] == playerSymbol && board[2][2] == playerSymbol) ||
+                (board[0][2] == playerSymbol && board[1][1] == playerSymbol && board[2][0] == playerSymbol)) {
+            printBoard(board);
+            winner = "Player";
+            System.out.println("\n-------------[ " + winner + " Wins! ]-----------");
+            gameEnds = true;
+
+        } else if ((board[0][0] == compSymbol && board[0][1] == compSymbol && board[0][2] == compSymbol) ||
+                (board[1][0] == compSymbol && board[1][1] == playerSymbol && board[1][2] == playerSymbol) ||
+                (board[2][0] == compSymbol && board[2][1] == playerSymbol && board[2][2] == compSymbol) ||
+
+                (board[0][0] == compSymbol && board[1][0] == compSymbol && board[2][0] == compSymbol) ||
+                (board[0][1] == compSymbol && board[1][1] == compSymbol && board[2][1] == compSymbol) ||
+                (board[0][2] == compSymbol && board[1][2] == compSymbol && board[2][2] == compSymbol) ||
+
+                (board[0][0] == compSymbol && board[1][1] == compSymbol && board[2][2] == compSymbol) ||
+                (board[0][2] == compSymbol && board[1][1] == compSymbol && board[2][0] == compSymbol)) {
+            printBoard(board);
+            winner = "Computer";
+            System.out.println("\n------------[ " + winner + " Wins! ]----------");
+            gameEnds = true;
+        } else if (pieceCount == 8 && winner.equals("Draw")) {
+            printBoard(board);
+            System.out.println("\n------------[ " + winner + "! ]-----------");
+            gameEnds = true;
+        }
+    }
+
+    private static void computerMove(char[][] board) {
+        switch (computerTurn) {
+            case 1:
+                board[0][0] = compSymbol;
+                pieceCount++;
+                break;
+            case 2:
+                board[0][1] = compSymbol;
+                pieceCount++;
+                break;
+            case 3:
+                board[0][2] = compSymbol;
+                pieceCount++;
+                break;
+            case 4:
+                board[1][0] = compSymbol;
+                pieceCount++;
+                break;
+            case 5:
+                board[1][1] = compSymbol;
+                pieceCount++;
+                break;
+            case 6:
+                board[1][2] = compSymbol;
+                pieceCount++;
+                break;
+            case 7:
+                board[2][0] = compSymbol;
+                pieceCount++;
+                break;
+            case 8:
+                board[2][1] = compSymbol;
+                pieceCount++;
+                break;
+            case 9:
+                board[2][2] = compSymbol;
+                pieceCount++;
+                break;
+            default:
+                System.out.println("Invalid!");
+        }
+    }
+
+    private static void computerTurn(Random rand, char[][] board) {
+        while (true) {
+            computerTurn = rand.nextInt(9) + 1;
+            if (isValidMove(board, computerTurn)) {
                 break;
             }
         }
-
+        System.out.println("Computer chose " + computerTurn);
     }
 
-    // Print Board
+    private static void playerMove(char[][] board) {
+        switch (playerTurn) {
+            case 1:
+                board[0][0] = playerSymbol;
+                pieceCount++;
+                break;
+            case 2:
+                board[0][1] = playerSymbol;
+                pieceCount++;
+                break;
+            case 3:
+                board[0][2] = playerSymbol;
+                pieceCount++;
+                break;
+            case 4:
+                board[1][0] = playerSymbol;
+                pieceCount++;
+                break;
+            case 5:
+                board[1][1] = playerSymbol;
+                pieceCount++;
+                break;
+            case 6:
+                board[1][2] = playerSymbol;
+                pieceCount++;
+                break;
+            case 7:
+                board[2][0] = playerSymbol;
+                pieceCount++;
+                break;
+            case 8:
+                board[2][1] = playerSymbol;
+                pieceCount++;
+                break;
+            case 9:
+                board[2][2] = playerSymbol;
+                pieceCount++;
+                break;
+            default:
+                System.out.println("Invalid!");
+
+        }
+    }
+
+    private static void playerTurn(Scanner scan, boolean fixedTrue, char[][] board) {
+        while (fixedTrue) {
+            System.out.print("\n[?] Where would you like to play? (1-9): ");
+            playerTurn = scan.nextInt();
+            if (isValidMove(board, playerTurn)) {
+                break;
+            } else {
+                System.out.println("[!] " + playerTurn + " is not a valid move, re-enter number.");
+            }
+        }
+    }
+
     private static void printBoard(char[][] board) {
         System.out.println("\n\t\t" + board[0][0] + " | " + board[0][1] + " | " + board[0][2]);
         System.out.println("\t\t- + - + -");
@@ -45,113 +198,9 @@ public class Tic_Tac_Toe {
         System.out.println("\t\t" + board[2][0] + " | " + board[2][1] + " | " + board[2][2]);
     }
 
-    // Player Turn
-    private static void playerTurn(char[][] board, Scanner scan) {
-
-        int playerTurn;
-        while (true) {
-            System.out.print("\n[ Where would you like to play? ] (1-9): ");
-            playerTurn = scan.nextInt();
-            if (isValidMove(board, playerTurn)) {
-                break;
-            } else {
-                System.out.println(playerTurn + " is not a valid move.");
-            }
-        }
-        placeMove(board, playerTurn, 'X');
-    }
-
-    // Computer Turn
-    private static void computerTurn(char[][] board) {
-        Random rand = new Random();
-        int computerTurn;
-        while (true) {
-            computerTurn = rand.nextInt(9) + 1;
-            if (isValidMove(board, computerTurn)) {
-                break;
-            }
-        }
-        System.out.println("Computer chose " + computerTurn);
-        placeMove(board, computerTurn, 'O');
-    }
-
-    // Scoring Identifier
-    private static boolean scoringIdentifier(char[][] board, char symbol) {
-        if ((board[0][0] == symbol && board[0][1] == symbol && board[0][2] == symbol) ||
-                (board[1][0] == symbol && board[1][1] == symbol && board[1][2] == symbol) ||
-                (board[2][0] == symbol && board[2][1] == symbol && board[2][2] == symbol) ||
-
-                (board[0][0] == symbol && board[1][0] == symbol && board[2][0] == symbol) ||
-                (board[0][1] == symbol && board[1][1] == symbol && board[2][1] == symbol) ||
-                (board[0][2] == symbol && board[1][2] == symbol && board[2][2] == symbol) ||
-
-                (board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) ||
-                (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol)) {
-            return true;
-        }
-        return false;
-    }
-
-    // Winner Identifier
-    private static boolean winnerIdentifier(char[][] board, boolean gameEnds) {
-
-        if (scoringIdentifier(board, 'X')) {
-            System.out.println("\n-------------[ Player Wins! ]-----------");
-            return gameEnds = true;
-        }
-        if (scoringIdentifier(board, 'O')) {
-            System.out.println("\n------------[ Computer Wins! ]----------");
-            return gameEnds = true;
-        }
-
-        for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[i].length; j++) {
-				if (board[i][j] == ' ') {
-                    return gameEnds = false;
-                }
-			}
-		}
-        System.out.println("The game ended in a tie!");
-        return gameEnds = true;
-    }
-
-    // Move Identifier
-    private static void placeMove(char[][] board, int position, char symbol) {
-        switch (position) {
-            case 1:
-                board[0][0] = symbol;
-                break;
-            case 2:
-                board[0][1] = symbol;
-                break;
-            case 3:
-                board[0][2] = symbol;
-                break;
-            case 4:
-                board[1][0] = symbol;
-                break;
-            case 5:
-                board[1][1] = symbol;
-                break;
-            case 6:
-                board[1][2] = symbol;
-                break;
-            case 7:
-                board[2][0] = symbol;
-                break;
-            case 8:
-                board[2][1] = symbol;
-                break;
-            case 9:
-                board[2][2] = symbol;
-                break;
-            default:
-                System.out.println("Invalid!");
-        }
-    }
-
     // Valid Move Identifier
     private static boolean isValidMove(char[][] board, int position) {
+
         switch (position) {
             case 1:
                 return (board[0][0] == ' ');

@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -129,6 +130,8 @@ public class testfile {
                         System.out.println("Invalid!");
                 }
 
+                String winner = "Draw";
+
                 if ((board[0][0] == playerSymbol && board[0][1] == playerSymbol && board[0][2] == playerSymbol) ||
                         (board[1][0] == playerSymbol && board[1][1] == playerSymbol && board[1][2] == playerSymbol) ||
                         (board[2][0] == playerSymbol && board[2][1] == playerSymbol && board[2][2] == playerSymbol) ||
@@ -140,7 +143,8 @@ public class testfile {
                         (board[0][0] == playerSymbol && board[1][1] == playerSymbol && board[2][2] == playerSymbol) ||
                         (board[0][2] == playerSymbol && board[1][1] == playerSymbol && board[2][0] == playerSymbol)) {
                     printBoard(board);
-                    System.out.println("\n-------------[ Player Wins! ]-----------");
+                    winner = "Player";
+                    System.out.println("\n-------------[ " + winner + " Wins! ]-----------");
                     gameEnds = true;
 
                 } else if ((board[0][0] == compSymbol && board[0][1] == compSymbol && board[0][2] == compSymbol) ||
@@ -154,18 +158,13 @@ public class testfile {
                         (board[0][0] == compSymbol && board[1][1] == compSymbol && board[2][2] == compSymbol) ||
                         (board[0][2] == compSymbol && board[1][1] == compSymbol && board[2][0] == compSymbol)) {
                     printBoard(board);
-                    System.out.println("\n------------[ Computer Wins! ]----------");
+                    winner = "Computer";
+                    System.out.println("\n------------[ " + winner + " Wins! ]----------");
                     gameEnds = true;
-                }
-
-                for (int i = 0; i < board.length; i++) {
-                    for (int j = 0; j < board[i].length; j++) {
-                        if (pieceCount == 8) {
-                            printBoard(board);
-                            System.out.println("\n------------[ Draw! ]-----------");
-                            gameEnds = true;
-                        }
-                    }
+                } else if (pieceCount == 8 && winner.equals("Draw")) {
+                    printBoard(board);
+                    System.out.println("\n------------[ " + winner + "! ]-----------");
+                    gameEnds = true;
                 }
             }
         }
@@ -203,6 +202,27 @@ public class testfile {
                 return (board[2][2] == ' ');
             default:
                 return false;
+        }
+    }
+
+    // ClearScreen
+    public static void clear() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                Runtime.getRuntime();
+            }
+        } catch (IOException | InterruptedException ex) {
+        }
+    }
+
+    // Time Reloader for Next Round
+    private static void Reloader() throws InterruptedException {
+        try {
+            Thread.sleep(1500);
+        } catch (Exception e) {
+            System.out.println("Something is wrong");
         }
     }
 }
