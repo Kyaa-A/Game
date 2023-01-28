@@ -45,6 +45,7 @@ public class Tic_Tac_Toe {
     }
 
     private static void gameMaster(char[][] board) {
+
         if ((board[0][0] == playerSymbol && board[0][1] == playerSymbol && board[0][2] == playerSymbol) ||
                 (board[1][0] == playerSymbol && board[1][1] == playerSymbol && board[1][2] == playerSymbol) ||
                 (board[2][0] == playerSymbol && board[2][1] == playerSymbol && board[2][2] == playerSymbol) ||
@@ -55,9 +56,10 @@ public class Tic_Tac_Toe {
 
                 (board[0][0] == playerSymbol && board[1][1] == playerSymbol && board[2][2] == playerSymbol) ||
                 (board[0][2] == playerSymbol && board[1][1] == playerSymbol && board[2][0] == playerSymbol)) {
+            clear();
             printBoard(board);
             winner = "Player";
-            System.out.println("\n-------------[ " + winner + " Wins! ]-----------");
+            System.out.println("\n---------------[ " + winner + "  Wins! ]-----------");
             gameEnds = true;
 
         } else if ((board[0][0] == compSymbol && board[0][1] == compSymbol && board[0][2] == compSymbol) ||
@@ -70,13 +72,15 @@ public class Tic_Tac_Toe {
 
                 (board[0][0] == compSymbol && board[1][1] == compSymbol && board[2][2] == compSymbol) ||
                 (board[0][2] == compSymbol && board[1][1] == compSymbol && board[2][0] == compSymbol)) {
+            clear();
             printBoard(board);
             winner = "Computer";
-            System.out.println("\n------------[ " + winner + " Wins! ]----------");
+            System.out.println("\n-------------[ " + winner + " Wins! ]----------");
             gameEnds = true;
         } else if (pieceCount == 8 && winner.equals("Draw")) {
+            clear();
             printBoard(board);
-            System.out.println("\n------------[ " + winner + "! ]-----------");
+            System.out.println("\n----------------[ " + winner + "! ]---------------");
             gameEnds = true;
         }
     }
@@ -191,11 +195,14 @@ public class Tic_Tac_Toe {
     }
 
     private static void printBoard(char[][] board) {
-        System.out.println("\n\t\t" + board[0][0] + " | " + board[0][1] + " | " + board[0][2]);
-        System.out.println("\t\t- + - + -");
-        System.out.println("\t\t" + board[1][0] + " | " + board[1][1] + " | " + board[1][2]);
-        System.out.println("\t\t- + - + -");
-        System.out.println("\t\t" + board[2][0] + " | " + board[2][1] + " | " + board[2][2]);
+       
+        System.out.println("\n\t\t + - + - + - +");
+        System.out.println("\t\t" + " | " + board[0][0] + " | " + board[0][1] + " | " + board[0][2] + " | ");
+        System.out.println("\t\t + - + - + - +");
+        System.out.println("\t\t" + " | " + board[1][0] + " | " + board[1][1] + " | " + board[1][2] + " | ");
+        System.out.println("\t\t + - + - + - +");
+        System.out.println("\t\t" + " | " + board[2][0] + " | " + board[2][1] + " | " + board[2][2] + " | ");
+        System.out.println("\t\t + - + - + - +");
     }
 
     // Valid Move Identifier
