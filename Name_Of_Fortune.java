@@ -7,12 +7,24 @@ public class Name_Of_Fortune {
         Random rand = new Random();
 
         String[] studNames = listName();
+        boolean valid = false;
 
-        int randomizer = rand.nextInt(33);
-        System.out.print("Do you want to spin? 1 = Y/ 2 = N: ");
-        String spin = scan.nextLine();
+        do {
+            valid = true;
+            try {
+                System.out.print("[!] Do you want to spin?\n\t1 = Y\n\t2 = N\nSelect one: ");
+                int spin = scan.nextInt();
 
-        System.out.println("\n" + studNames[randomizer] + " will be Oral Reciting! ");
+                if (spin == 1) {
+                    System.out.println("\n[ " + studNames[rand.nextInt(33)] + " will be Oral Reciting! ]");
+                }
+                valid = false;
+            } catch (Exception e) {
+                scan.nextLine();
+                System.out.println("[!] Invalid Input, Please Try Again\n");
+                valid = true;
+            }
+        } while (valid);
     }
 
     private static String[] listName() {
