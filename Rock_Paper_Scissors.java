@@ -16,7 +16,7 @@ public class Rock_Paper_Scissors {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
 
-        System.out.print("Want to play Rock, Paper, Scissor? Y/N: ");
+        System.out.print("[?] Want to play Rock, Paper, Scissor? Y/N: ");
         String playIdentifier = scan.nextLine();
 
         while (playIdentifier.equalsIgnoreCase("Y")) {
@@ -25,8 +25,8 @@ public class Rock_Paper_Scissors {
 
                 clear();
 
-                System.out.println("Options to choose from:\n1. Rock\n2. Paper\n3. Scissors");
-                System.out.println("\nThe Computer already made it's choice\n");
+                System.out.println("\n[!] Options to choose from:\n1. Rock\n2. Paper\n3. Scissors");
+                System.out.println("\n[!] The Computer already made it's choice");
 
                 playerTurn(scan);
 
@@ -46,7 +46,7 @@ public class Rock_Paper_Scissors {
     // Player Turn
     private static void playerTurn(Scanner scan) {
         do {
-            System.out.print("Pick one that suits you: ");
+            System.out.print("[x] Pick one that suits you: ");
             int playerTurn = scan.nextInt();
             System.out.println();
 
